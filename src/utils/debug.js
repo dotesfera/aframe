@@ -1,13 +1,13 @@
-var debugLib = require("debug");
-var extend = require("object-assign");
+var debugLib = require('debug');
+var extend = require('object-assign');
 
 var settings = {
   colors: {
-    debug: "gray",
-    error: "red",
-    info: "gray",
-    warn: "orange",
-  },
+    debug: 'gray',
+    error: 'red',
+    info: 'gray',
+    warn: 'orange'
+  }
 };
 
 /**
@@ -34,8 +34,8 @@ extend(debug, debugLib);
  * @returns {String} The type of the namespace (e.g., `warn`).
  * @api private
  */
-function getDebugNamespaceType(namespace) {
-  var chunks = namespace.split(":");
+function getDebugNamespaceType (namespace) {
+  var chunks = namespace.split(':');
 
   return chunks[chunks.length - 1]; // Return the last one
 }
@@ -48,7 +48,7 @@ function getDebugNamespaceType(namespace) {
  * @returns {String} The color of the namespace (e.g., `orange`).
  * @api private
  */
-function getDebugNamespaceColor(namespace) {
+function getDebugNamespaceColor (namespace) {
   var type = getDebugNamespaceType(namespace);
 
   var color = settings.colors && settings.colors[type];
@@ -65,7 +65,7 @@ function getDebugNamespaceColor(namespace) {
  * @returns {localStorage}
  * @api private
  */
-function storage() {
+function storage () {
   try {
     return window.localStorage;
   } catch (e) {}
@@ -82,10 +82,10 @@ function storage() {
  *
  */
 var ls = storage();
-if (ls && (parseInt(ls.logs, 10) || ls.logs === "true")) {
-  debug.enable("*");
+if (ls && (parseInt(ls.logs, 10) || ls.logs === 'true')) {
+  debug.enable('*');
 } else {
-  debug.enable("*:error,*:info,*:warn");
+  debug.enable('*:error,*:info,*:warn');
 }
 
 if (process.browser) {
