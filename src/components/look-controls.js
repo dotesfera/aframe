@@ -225,10 +225,8 @@ module.exports.Component = registerComponent('look-controls', {
         }
         return;
       }
-
-      this.updateMagicWindowOrientation();
-
       if (this.data.gyroEnabled) {
+        this.updateMagicWindowOrientation();
         // On mobile, do camera rotation with touch events and sensors.
         object3D.rotation.x = this.magicWindowDeltaEuler.x + pitchObject.rotation.x;
         object3D.rotation.y = this.magicWindowDeltaEuler.y + yawObject.rotation.y;
