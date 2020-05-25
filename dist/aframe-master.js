@@ -66761,7 +66761,7 @@ module.exports={
     "test:nobrowser": "NO_BROWSER=true npm test",
     "test:node": "mocha --ui tdd tests/node"
   },
-  "repository": "aframevr/aframe",
+  "repository": "dotesfera/aframe",
   "license": "MIT",
   "files": [
     "dist/*",
@@ -81830,7 +81830,7 @@ _dereq_('./core/a-mixin');
 _dereq_('./extras/components/');
 _dereq_('./extras/primitives/');
 
-// console.log('A-Frame Version: 1.0.4 (Date 2020-05-25, Commit #3991beec)');
+// console.log('A-Frame Version: 1.0.4 (Date 2020-05-25, Commit #95497ad6)');
 // console.log('THREE Version (https://github.com/supermedium/three.js):',
 //             pkg.dependencies['super-three']);
 // console.log('WebVR Polyfill Version:', pkg.dependencies['webvr-polyfill']);
