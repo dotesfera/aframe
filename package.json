@@ -29,7 +29,7 @@
     "test:nobrowser": "NO_BROWSER=true npm test",
     "test:node": "mocha --ui tdd tests/node"
   },
-  "repository": "aframevr/aframe",
+  "repository": "dotesfera/aframe",
   "license": "MIT",
   "files": [
     "dist/*",
