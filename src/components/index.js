@@ -38,7 +38,7 @@ require('./scene/background');
 require('./scene/debug');
 require('./scene/device-orientation-permission-ui');
 require('./scene/embedded');
-require('./scene/inspector');
+// require('./scene/inspector');
 require('./scene/fog');
 require('./scene/keyboard-shortcuts');
 require('./scene/pool');
