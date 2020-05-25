@@ -70056,7 +70056,8 @@ module.exports.Component = registerComponent('look-controls', {
     pointerLockEnabled: {default: false},
     reverseMouseDrag: {default: false},
     reverseTouchDrag: {default: false},
-    touchEnabled: {default: true}
+    touchEnabled: {default: true},
+    gyroEnabled: {default: true}
   },
 
   init: function () {
@@ -70129,7 +70130,7 @@ module.exports.Component = registerComponent('look-controls', {
   tick: function (t) {
     var data = this.data;
     if (!data.enabled) { return; }
-    this.updateOrientation();
+    // this.updateOrientation();
   },
 
   play: function () {
@@ -81710,7 +81711,7 @@ _dereq_('./core/a-mixin');
 _dereq_('./extras/components/');
 _dereq_('./extras/primitives/');
 
-// console.log('A-Frame Version: 1.0.4 (Date 2020-05-25, Commit #fdb9d8cf)');
+// console.log('A-Frame Version: 1.0.4 (Date 2020-05-25, Commit #0359bed2)');
 // console.log('THREE Version (https://github.com/supermedium/three.js):',
 //             pkg.dependencies['super-three']);
 // console.log('WebVR Polyfill Version:', pkg.dependencies['webvr-polyfill']);
