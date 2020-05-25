@@ -45,7 +45,7 @@ module.exports.Component = registerComponent('look-controls', {
       position: new THREE.Vector3(),
       rotation: new THREE.Euler()
     };
-
+    console.log('Gyroscope Enabled', this.data.gyroEnabled);
     // Call enter VR handler if the scene has entered VR before the event listeners attached.
     if (this.el.sceneEl.is('vr-mode')) { this.onEnterVR(); }
   },
