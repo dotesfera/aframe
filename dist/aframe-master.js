@@ -70261,17 +70261,16 @@ module.exports.Component = registerComponent('look-controls', {
         }
         return;
       }
-      console.log('Gyroscope Enabled', this.data.gyroEnabled);
-      if (this.data.gyroEnabled) {
-        this.updateMagicWindowOrientation();
+      // if (this.data.gyroEnabled) {
+      this.updateMagicWindowOrientation();
         // On mobile, do camera rotation with touch events and sensors.
-        object3D.rotation.x = this.magicWindowDeltaEuler.x + pitchObject.rotation.x;
-        object3D.rotation.y = this.magicWindowDeltaEuler.y + yawObject.rotation.y;
-        object3D.rotation.z = this.magicWindowDeltaEuler.z;
-      } else {
-        object3D.rotation.x = pitchObject.rotation.x;
-        object3D.rotation.y = yawObject.rotation.y;
-      }
+      object3D.rotation.x = this.magicWindowDeltaEuler.x + pitchObject.rotation.x;
+      object3D.rotation.y = this.magicWindowDeltaEuler.y + yawObject.rotation.y;
+      object3D.rotation.z = this.magicWindowDeltaEuler.z;
+      // } else {
+      //   object3D.rotation.x = pitchObject.rotation.x;
+      //   object3D.rotation.y = yawObject.rotation.y;
+      // }
     };
   })(),
 
@@ -81714,7 +81713,7 @@ _dereq_('./core/a-mixin');
 _dereq_('./extras/components/');
 _dereq_('./extras/primitives/');
 
-// console.log('A-Frame Version: 1.0.4 (Date 2020-05-25, Commit #05d6a4d7)');
+// console.log('A-Frame Version: 1.0.4 (Date 2020-05-25, Commit #a9ec1c6a)');
 // console.log('THREE Version (https://github.com/supermedium/three.js):',
 //             pkg.dependencies['super-three']);
 // console.log('WebVR Polyfill Version:', pkg.dependencies['webvr-polyfill']);

@@ -224,17 +224,16 @@ module.exports.Component = registerComponent('look-controls', {
         }
         return;
       }
-      console.log('Gyroscope Enabled', this.data.gyroEnabled);
-      if (this.data.gyroEnabled) {
-        this.updateMagicWindowOrientation();
+      // if (this.data.gyroEnabled) {
+      this.updateMagicWindowOrientation();
         // On mobile, do camera rotation with touch events and sensors.
-        object3D.rotation.x = this.magicWindowDeltaEuler.x + pitchObject.rotation.x;
-        object3D.rotation.y = this.magicWindowDeltaEuler.y + yawObject.rotation.y;
-        object3D.rotation.z = this.magicWindowDeltaEuler.z;
-      } else {
-        object3D.rotation.x = pitchObject.rotation.x;
-        object3D.rotation.y = yawObject.rotation.y;
-      }
+      object3D.rotation.x = this.magicWindowDeltaEuler.x + pitchObject.rotation.x;
+      object3D.rotation.y = this.magicWindowDeltaEuler.y + yawObject.rotation.y;
+      object3D.rotation.z = this.magicWindowDeltaEuler.z;
+      // } else {
+      //   object3D.rotation.x = pitchObject.rotation.x;
+      //   object3D.rotation.y = yawObject.rotation.y;
+      // }
     };
   })(),
 
