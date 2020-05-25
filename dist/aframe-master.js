@@ -70082,7 +70082,6 @@ module.exports.Component = registerComponent('look-controls', {
       position: new THREE.Vector3(),
       rotation: new THREE.Euler()
     };
-    console.log('Gyroscope Enabled', this.data.gyroEnabled);
     // Call enter VR handler if the scene has entered VR before the event listeners attached.
     if (this.el.sceneEl.is('vr-mode')) { this.onEnterVR(); }
   },
@@ -70262,6 +70261,7 @@ module.exports.Component = registerComponent('look-controls', {
         }
         return;
       }
+      console.log('Gyroscope Enabled', this.data.gyroEnabled);
       if (this.data.gyroEnabled) {
         this.updateMagicWindowOrientation();
         // On mobile, do camera rotation with touch events and sensors.
@@ -81714,7 +81714,7 @@ _dereq_('./core/a-mixin');
 _dereq_('./extras/components/');
 _dereq_('./extras/primitives/');
 
-// console.log('A-Frame Version: 1.0.4 (Date 2020-05-25, Commit #81b58b2e)');
+// console.log('A-Frame Version: 1.0.4 (Date 2020-05-25, Commit #05d6a4d7)');
 // console.log('THREE Version (https://github.com/supermedium/three.js):',
 //             pkg.dependencies['super-three']);
 // console.log('WebVR Polyfill Version:', pkg.dependencies['webvr-polyfill']);
