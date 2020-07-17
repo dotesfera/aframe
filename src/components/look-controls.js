@@ -58,12 +58,10 @@ module.exports.Component = registerComponent('look-controls', {
       if (typeof DeviceOrientationEvent !== 'undefined' && DeviceOrientationEvent.requestPermission) {
         magicWindowControls.enabled = false;
         if (this.el.sceneEl.components['device-orientation-permission-ui'].permissionGranted) {
-          // magicWindowControls.enabled = true;
-          magicWindowControls.enabled = false;
+          magicWindowControls.enabled = true;
         } else {
           this.el.sceneEl.addEventListener('deviceorientationpermissiongranted', function () {
-            // magicWindowControls.enabled = true;
-            magicWindowControls.enabled = false;
+            magicWindowControls.enabled = true;
           });
         }
       }
