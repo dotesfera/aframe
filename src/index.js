@@ -3,27 +3,21 @@ window.Promise = window.Promise || require('promise-polyfill');
 
 // WebVR polyfill
 // Check before the polyfill runs.
-window.hasNativeWebVRImplementation =
-  !!window.navigator.getVRDisplays || !!window.navigator.getVRDevices;
+window.hasNativeWebVRImplementation = !!window.navigator.getVRDisplays || !!window.navigator.getVRDevices;
 window.hasNativeWebXRImplementation = navigator.xr !== undefined;
 
 // If native WebXR or WebVR are defined WebVRPolyfill does not initialize.
-if (
-  !window.hasNativeWebXRImplementation &&
-  !window.hasNativeWebVRImplementation
-) {
+if (!window.hasNativeWebXRImplementation && !window.hasNativeWebVRImplementation) {
   var isIOSOlderThan10 = require('./utils/isIOSOlderThan10');
   // Workaround for iOS Safari canvas sizing issues in stereo (webvr-polyfill/issues/102).
   // Only for iOS on versions older than 10.
-  var bufferScale = isIOSOlderThan10(window.navigator.userAgent)
-    ? 1 / window.devicePixelRatio
-    : 1;
+  var bufferScale = isIOSOlderThan10(window.navigator.userAgent) ? 1 / window.devicePixelRatio : 1;
   var WebVRPolyfill = require('webvr-polyfill');
   var polyfillConfig = {
     BUFFER_SCALE: bufferScale,
     CARDBOARD_UI_DISABLED: true,
     ROTATE_INSTRUCTIONS_DISABLED: true,
-    MOBILE_WAKE_LOCK: !!window.cordova
+    MOBILE_WAKE_LOCK: !!window.cordova,
   };
   window.webvrpolyfill = new WebVRPolyfill(polyfillConfig);
 }
@@ -41,11 +35,7 @@ if (utils.isIE11) {
 var error = debug('A-Frame:error');
 var warn = debug('A-Frame:warn');
 
-if (
-  window.document.currentScript &&
-  window.document.currentScript.parentNode !== window.document.head &&
-  !window.debug
-) {
+if (window.document.currentScript && window.document.currentScript.parentNode !== window.document.head && !window.debug) {
   warn(
     'Put the A-Frame <script> tag in the <head> of the HTML *before* the scene to ' +
       'ensure everything for A-Frame is properly registered before they are used from ' +
@@ -76,8 +66,7 @@ var AScene = require('./core/scene/a-scene').AScene;
 var components = require('./core/component').components;
 var registerComponent = require('./core/component').registerComponent;
 var registerGeometry = require('./core/geometry').registerGeometry;
-var registerPrimitive = require('./extras/primitives/primitives')
-  .registerPrimitive;
+var registerPrimitive = require('./extras/primitives/primitives').registerPrimitive;
 var registerShader = require('./core/shader').registerShader;
 var registerSystem = require('./core/system').registerSystem;
 var shaders = require('./core/shader').shaders;
@@ -124,7 +113,7 @@ module.exports = window.AFRAME = {
   registerSystem: registerSystem,
   primitives: {
     getMeshMixin: require('./extras/primitives/getMeshMixin'),
-    primitives: require('./extras/primitives/primitives').primitives
+    primitives: require('./extras/primitives/primitives').primitives,
   },
   scenes: require('./core/scene/scenes'),
   schema: require('./core/schema'),
@@ -132,5 +121,5 @@ module.exports = window.AFRAME = {
   systems: systems,
   THREE: THREE,
   utils: utils,
-  version: pkg.version
+  version: pkg.version,
 };

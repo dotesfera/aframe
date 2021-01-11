@@ -26,7 +26,8 @@ suite('a-scene (without renderer)', function () {
       },
       exitPresent: function () {
         return Promise.resolve();
-      }
+      },
+      isPresenting: true
     });
     document.body.appendChild(el);
   });
@@ -144,13 +145,22 @@ suite('a-scene (without renderer)', function () {
         },
         getContext: function () { return undefined; },
         setAnimationLoop: function () {},
-        setSize: function () {}
+        setPixelRatio: function () {},
+        setSize: function () {},
+        render: function () {}
       };
 
       // mock camera
       sceneEl.camera = {
         el: {object3D: {}},
         updateProjectionMatrix: function () {}
+      };
+
+      // mock canvas
+      sceneEl.canvas = {
+        addEventListener: function () {},
+        removeEventListener: function () {},
+        requestFullscreen: function () {}
       };
     });
 
@@ -195,6 +205,15 @@ suite('a-scene (without renderer)', function () {
       var sceneEl = this.el;
       sceneEl.enterVR().then(function () {
         assert.ok(sceneEl.is('vr-mode'));
+        done();
+      });
+    });
+
+    helpers.getSkipCITest()('adds AR mode state', function (done) {
+      var sceneEl = this.el;
+      sceneEl.enterVR(true).then(function () {
+        assert.notOk(sceneEl.is('vr-mode'));
+        assert.ok(sceneEl.is('ar-mode'));
         done();
       });
     });
@@ -247,8 +266,10 @@ suite('a-scene (without renderer)', function () {
           setDevice: function () {},
           setPoseTarget: function () {}
         },
+        setAnimationLoop: function () {},
         setPixelRatio: function () {},
-        setSize: function () {}
+        setSize: function () {},
+        render: function () {}
       };
 
       sceneEl.addState('vr-mode');
@@ -258,7 +279,7 @@ suite('a-scene (without renderer)', function () {
       var sceneEl = this.el;
       sceneEl.removeState('vr-mode');
       sceneEl.exitVR().then(function (val) {
-        assert.equal(val, 'Not in VR.');
+        assert.equal(val, 'Not in immersive mode.');
         done();
       });
     });
@@ -415,7 +436,9 @@ suite('a-scene (without renderer)', function () {
           getDevice: function () { return {isPresenting: false}; },
           setDevice: function () {}
         },
-        setSize: setSizeSpy
+        setAnimationLoop: function () {},
+        setSize: setSizeSpy,
+        render: function () {}
       };
     });
 
@@ -624,6 +647,11 @@ helpers.getSkipCISuite()('a-scene (with renderer)', function () {
     });
   });
 
+  teardown(function () {
+    this.sinon.stub(AScene.prototype, 'render');
+    this.sinon.stub(AScene.prototype, 'setupRenderer');
+  });
+
   suite('detachedCallback', function () {
     test.skip('cancels request animation frame', function (done) {
       var el = this.el;
@@ -694,6 +722,10 @@ helpers.getSkipCISuite()('a-scene (with renderer)', function () {
     var scene = this.el;
     var Component = {el: {isPlaying: true}, tock: function () {}};
     this.sinon.spy(Component, 'tock');
+    scene.render = function () {
+      scene.time = 1;
+      if (scene.isPlaying) { scene.tock(1); }
+    };
     scene.addBehavior(Component);
     scene.addBehavior({el: {isPlaying: true}});
     scene.render();
